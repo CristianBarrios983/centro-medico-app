@@ -33,7 +33,18 @@
                 <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Medicos</h5>
-                        <p class="card-text">0</p>
+                        <?php 
+                            require('assets/server/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS total_medicos FROM medicos";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $total_medicos = $row['total_medicos'];
+                        ?>
+                        <p class="card-text"><?php echo $total_medicos; ?></p>
                     </div>
                 </div>
             </div>
@@ -64,8 +75,19 @@
             <div class="col-md-3">
                 <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Consultas</h5>
-                        <p class="card-text">0</p>
+                        <h5 class="card-title">Especialidades</h5>
+                        <?php 
+                            require('assets/server/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS total_especialidades FROM especialidades";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $total_especialidades = $row['total_especialidades'];
+                        ?>
+                        <p class="card-text"><?php echo $total_especialidades ?></p>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@
 </head>
 <body class="bg-info-subtle">
 <div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
-        <form action="recibeDatosMedicos.php" method="post" style="width: 20rem;" class="bg-white p-3 rounded-2" id="registerForm">
+        <form action="recibeDatosPacientes.php" method="post" style="width: 20rem;" class="bg-white p-3 rounded-2" id="registerForm">
         <?php
             // En el formulario de inicio de sesión (index.php)
             session_start();
@@ -61,11 +61,6 @@
                 <input type="text" class="form-control" id="num_tel" name="num_tel">
                 <span id="surnameError" class="text-danger error-message"></span>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Correo electronico</label>
-                <input type="text" class="form-control" id="email" name="email">
-                <span id="emailError" class="text-danger error-message"></span>
-              </div>
               <div class="mb-3">
                 <label for="sex" class="form-label">Sexo</label>
                 <select class="form-select" aria-label="Default select example" id="sex" name="sex">
@@ -76,17 +71,12 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="matricula" class="form-label">Matricula</label>
-                <input type="text" class="form-control" id="matricula" name="matricula">
+                <label for="info_medica" class="form-label">Informacion medica</label>
+                <input type="text" class="form-control" id="info_medica" name="info_medica">
               </div>
               <div class="mb-3">
                 <label for="residencia" class="form-label">Residencia</label>
                 <input type="text" class="form-control" id="residencia" name="residencia">
-              </div>
-              <div class="mb-3">
-                <label for="pass" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="pass" name="pass">
-                <span id="passError" class="text-danger error-message"></span>
               </div>
               <button type="submit" class="btn btn-primary">Register</button>
               <a href="listaMedicos.php" class="btn btn-success">Atras</a>
