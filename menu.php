@@ -9,18 +9,26 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/final-db/panel.php">Home</a>
         </li>
+        <?php if($rolUsuario == 1 || $rolUsuario == 2): ?>
         <li class="nav-item">
           <a class="nav-link" href="/final-db/modulos/medicos/listaMedicos.php">Medicos</a>
         </li>
+        <?php endif; ?>
+        <?php if($rolUsuario == 1 || $rolUsuario == 2): ?>
         <li class="nav-item">
           <a class="nav-link" href="/final-db/modulos/pacientes/listaPacientes.php">Pacientes</a>
         </li>
+        <?php endif; ?>
+        <?php if($rolUsuario == 1 || $rolUsuario == 3): ?>
         <li class="nav-item">
           <a class="nav-link" href="/final-db/modulos/empleados/listaEmpleados.php">Empleados</a>
         </li>
+        <?php endif; ?>
+        <?php if($rolUsuario == 1): ?>
         <li class="nav-item">
           <a class="nav-link" href="/final-db/modulos/especialidades/listaEspecialidades.php">Especialidades</a>
         </li>
+        <?php endif; ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-fill"></i>

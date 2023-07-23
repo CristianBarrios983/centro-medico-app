@@ -14,6 +14,7 @@
     $pass = $_POST['pass'];
     $puesto = $_POST['puesto_trabajo'];
     $residencia = $_POST['residencia'];
+    $rol = $_POST['rol'];
 
     $queryCheckEmail = "SELECT * FROM usuarios WHERE email = '$email'";
     $resultCheckEmail = mysqli_query($conn, $queryCheckEmail);
@@ -51,7 +52,7 @@
     
                         if(mysqli_query($conn, $query)){
                 
-                            $sql="INSERT INTO usuarios(email,pass,id_persona) VALUES ('$email','$hash',$id_persona)";
+                            $sql="INSERT INTO usuarios(id_rol,email,pass,id_persona) VALUES ($rol,'$email','$hash',$id_persona)";
             
                             if (mysqli_query($conn,$sql)) {
                                 $_SESSION['mensaje'] = "Registrado exitosamente";

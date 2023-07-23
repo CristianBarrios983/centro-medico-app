@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    // Verificar si el usuario ha iniciado sesión y si existe su rol en la sesión
+    if(isset($_SESSION['rol'])){
+      $rolUsuario = $_SESSION['rol'];
+
+      if($rolUsuario == 1){
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,3 +48,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<?php
+    }else{
+        header("Location: ../../mensaje.php");
+        exit();
+      }
+    }else{
+        // El usuario no ha iniciado sesión, redirigir a una página de inicio de sesión
+        header("Location: ../../index.php");
+        exit();
+    }
+?>
