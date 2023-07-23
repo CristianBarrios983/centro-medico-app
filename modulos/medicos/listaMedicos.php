@@ -33,9 +33,7 @@
             require('../../assets/server/conexion.php');
 
             //Consulta para obtener los datos de las personas
-            $query = "SELECT m.matricula_medico, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social FROM medicos m 
-            JOIN personas p ON m.id_persona = p.id_persona
-            JOIN documentaciones d ON p.id_documento = d.id_documento";
+            $query = "SELECT m.matricula_medico, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.* FROM medicos m JOIN personas p ON m.id_persona = p.id_persona JOIN documentaciones d ON p.id_documento = d.id_documento JOIN datos_contactos dc ON dc.id_persona = p.id_persona JOIN direcciones di ON dc.id_direccion = di.id_direccion;";
             $result = mysqli_query($conn, $query);
 
             if(mysqli_num_rows($result) > 0){

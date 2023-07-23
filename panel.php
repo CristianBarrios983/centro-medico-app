@@ -52,7 +52,18 @@
                 <div class="card text-bg-success mb-3" style="max-width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Empleados</h5>
-                        <p class="card-text">0</p>
+                        <?php 
+                            require('assets/server/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS total_empleados FROM empleados";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $total_empleados = $row['total_empleados'];
+                        ?>
+                        <p class="card-text"><?php echo $total_empleados ?></p>
                     </div>
                 </div>
             </div>
@@ -60,15 +71,18 @@
                 <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Pacientes</h5>
-                        <p class="card-text">0</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Consultas</h5>
-                        <p class="card-text">0</p>
+                        <?php 
+                            require('assets/server/conexion.php');
+
+                            //Se realiza la consulta para contar el numero de usuarios
+                            $query = "SELECT COUNT(*) AS total_pacientes FROM pacientes";
+                            $result = mysqli_query($conn, $query);
+
+                            //Obtener el resultado de la consulta
+                            $row = mysqli_fetch_assoc($result);
+                            $total_pacientes = $row['total_pacientes'];
+                        ?>
+                        <p class="card-text"><?php echo $total_pacientes; ?></p>
                     </div>
                 </div>
             </div>
@@ -88,30 +102,6 @@
                             $total_especialidades = $row['total_especialidades'];
                         ?>
                         <p class="card-text"><?php echo $total_especialidades ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Consultas</h5>
-                        <p class="card-text">0</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Pacientes</h5>
-                        <p class="card-text">0</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Medicos</h5>
-                        <p class="card-text">0</p>
                     </div>
                 </div>
             </div>

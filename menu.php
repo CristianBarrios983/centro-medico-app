@@ -21,16 +21,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/final-db/modulos/especialidades/listaEspecialidades.php">Especialidades</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Consultas</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-fill"></i>
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item">Usuario: <span class="badge text-bg-info"><?php echo $_SESSION['email']; ?></span></a></li>
-            <li><a class="dropdown-item" href="assets/server/salir.php" style="color: red;"><i class="bi bi-box-arrow-right"></i></a></li>
+            <li><a class="dropdown-item" href="/final-db/assets/server/salir.php" style="color: red;"><i class="bi bi-box-arrow-right"></i></a></li>
           </ul>
         </li>
       </ul>

@@ -16,7 +16,14 @@
       $id_registro = $_GET['id'];
 
       // Consulta para obtener los datos del registro a editar
-      $query = "SELECT m.matricula_medico, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.* FROM medicos m JOIN personas p ON m.id_persona = p.id_persona JOIN documentaciones d ON p.id_documento = d.id_documento JOIN datos_contactos dc ON dc.id_persona = p.id_persona JOIN direcciones di ON dc.id_direccion = di.id_direccion WHERE p.id_persona = $id_registro";
+      $query = "SELECT em.*, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.*, pt.* 
+      FROM empleados em 
+                  JOIN personas p ON em.id_persona = p.id_persona 
+                  JOIN documentaciones d ON p.id_documento = d.id_documento 
+                  JOIN datos_contactos dc ON dc.id_persona = p.id_persona 
+                  JOIN direcciones di ON dc.id_direccion = di.id_direccion
+                  JOIN puestos_trabajos pt ON em.id_puesto_trabajo = pt.id_puesto_trabajo
+                  WHERE p.id_persona = $id_registro;";
       $result = mysqli_query($conn, $query);
 
       if(mysqli_num_rows($result) == 1){
@@ -78,15 +85,32 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="matricula" class="form-label">Matricula</label>
-                <input type="text" class="form-control" id="matricula" name="matricula" value="<?php echo $row['matricula_medico']; ?>">
-              </div>
-              <div class="mb-3">
                 <label for="residencia" class="form-label">Residencia</label>
                 <input type="text" class="form-control" id="residencia" name="residencia" value="<?php echo $row['residencia']; ?>">
               </div>
+              <div class="mb-3">
+                <label for="puesto_trabajo" class="form-label">Puesto de trabajo</label>
+                <?php 
+                    require('../../assets/server/conexion.php');
+
+                    $query = "SELECT id_puesto_trabajo, nombre_puesto_trabajo FROM puestos_trabajos";
+                    $result = mysqli_query($conn,$query);
+                ?>
+                <select class="form-select" aria-label="Default select example" id="puesto_trabajo" name="puesto_trabajo">
+                    <option selected value="<?php echo $row['id_puesto_trabajo']; ?>"><?php echo $row['nombre_puesto_trabajo'] ?></option>
+                    <?php
+                         while($fila = mysqli_fetch_assoc($result)):
+                            if($fila['nombre_puesto_trabajo'] != $row['nombre_puesto_trabajo']):
+                    ?>
+                    <option value="<?php echo $fila['id_puesto_trabajo']; ?>"><?php echo $fila['nombre_puesto_trabajo']; ?></option>
+                    <?php
+                            endif; 
+                        endwhile; 
+                    ?>
+                </select>
+              </div>
               <button type="submit" class="btn btn-primary">Editar</button>
-              <a href="listaMedicos.php" class="btn btn-danger">Volver atras</a>
+              <a href="listaEmpleados.php" class="btn btn-danger">Volver atras</a>
         </form>
         <?php
       }else{

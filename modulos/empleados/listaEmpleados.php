@@ -13,7 +13,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lista pacientes</title>
+    <title>Lista empleados</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <!-- Bootstrap Icons -->
@@ -33,11 +33,13 @@
             require('../../assets/server/conexion.php');
 
             //Consulta para obtener los datos de las personas
-            $query = "SELECT e.*, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, pt.nombre_puesto_trabajo 
-            FROM empleados e 
-                        JOIN personas p ON e.id_persona = p.id_persona
-                        JOIN documentaciones d ON p.id_documento = d.id_documento
-                        JOIN puestos_trabajos pt ON e.id_puesto_trabajo = pt.id_puesto_trabajo";
+            $query = "SELECT em.*, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.*, pt.* 
+            FROM empleados em 
+                        JOIN personas p ON em.id_persona = p.id_persona 
+                        JOIN documentaciones d ON p.id_documento = d.id_documento 
+                        JOIN datos_contactos dc ON dc.id_persona = p.id_persona 
+                        JOIN direcciones di ON dc.id_direccion = di.id_direccion
+                        JOIN puestos_trabajos pt ON em.id_puesto_trabajo = pt.id_puesto_trabajo;";
             $result = mysqli_query($conn, $query);
 
             if(mysqli_num_rows($result) > 0){

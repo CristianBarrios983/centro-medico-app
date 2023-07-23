@@ -3,7 +3,7 @@
     session_start();
 
     // Verificar si se recibieron los datos del formulario de edición
-    if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['sex']) && isset($_POST['tipo_doc']) && isset($_POST['num_doc']) && isset($_POST['cuil']) && isset($_POST['num_seg_social']) && isset($_POST['num_tel']) && isset($_POST['matricula']) && isset($_POST['residencia']) && isset($_POST['id_doc']) && isset($_POST['id_contacto']) && isset($_POST['id_direccion'])){
+    if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['sex']) && isset($_POST['tipo_doc']) && isset($_POST['num_doc']) && isset($_POST['cuil']) && isset($_POST['num_seg_social']) && isset($_POST['num_tel']) && isset($_POST['puesto_trabajo']) && isset($_POST['residencia']) && isset($_POST['id_doc']) && isset($_POST['id_contacto']) && isset($_POST['id_direccion'])){
         //Obteniendo los valores para la edicion
         $id_registro = $_POST['id'];
         $id_documento = $_POST['id_doc'];
@@ -17,13 +17,13 @@
         $cuil = $_POST['cuil'];
         $num_seg_social = $_POST['num_seg_social'];
         $telefono = $_POST['num_tel'];
-        $matricula = $_POST['matricula'];
+        $puesto = $_POST['puesto_trabajo'];
         $residencia = $_POST['residencia'];
 
         $query = "UPDATE personas SET nombre = '$name', apellido = '$surname', sexo = '$sex' WHERE id_persona = $id_registro";
         $result = mysqli_query($conn, $query);
 
-        $query2 = "UPDATE medicos SET matricula_medico = '$matricula' WHERE id_persona = $id_registro";
+        $query2 = "UPDATE empleados SET id_puesto_trabajo = '$puesto' WHERE id_persona = $id_registro";
         $result2 = mysqli_query($conn, $query2);
 
         $query3 = "UPDATE documentaciones SET tipo_documento = '$tipo_doc', numero_documento = '$num_doc', cuil = $cuil, nro_seg_social = '$num_seg_social' WHERE id_documento = $id_documento";
@@ -37,11 +37,11 @@
 
         if(mysqli_query($conn, $query5)){
             $_SESSION['mensaje'] = "Datos actualizados correctamente";
-            header("Location: listaMedicos.php");
+            header("Location: listaEmpleados.php");
             exit();
         }else{
             $_SESSION['mensaje'] = "No se pudo actualizar";
-            header("Location: listaMedicos.php");
+            header("Location: listaEmpleados.php");
             exit();
         }
     }else{

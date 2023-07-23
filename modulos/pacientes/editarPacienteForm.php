@@ -16,7 +16,12 @@
       $id_registro = $_GET['id'];
 
       // Consulta para obtener los datos del registro a editar
-      $query = "SELECT m.matricula_medico, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.* FROM medicos m JOIN personas p ON m.id_persona = p.id_persona JOIN documentaciones d ON p.id_documento = d.id_documento JOIN datos_contactos dc ON dc.id_persona = p.id_persona JOIN direcciones di ON dc.id_direccion = di.id_direccion WHERE p.id_persona = $id_registro";
+      $query = "SELECT pa.id_persona, pa.informacion_medica, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.* FROM pacientes pa 
+      JOIN personas p ON pa.id_persona = p.id_persona 
+      JOIN documentaciones d ON p.id_documento = d.id_documento 
+      JOIN datos_contactos dc ON dc.id_persona = p.id_persona 
+      JOIN direcciones di ON dc.id_direccion = di.id_direccion
+      WHERE p.id_persona = $id_registro;";
       $result = mysqli_query($conn, $query);
 
       if(mysqli_num_rows($result) == 1){
@@ -78,15 +83,15 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="matricula" class="form-label">Matricula</label>
-                <input type="text" class="form-control" id="matricula" name="matricula" value="<?php echo $row['matricula_medico']; ?>">
+                <label for="info_medica" class="form-label">Informacion medica</label>
+                <input type="text" class="form-control" id="info_medica" name="info_medica" value="<?php echo $row['informacion_medica']; ?>">
               </div>
               <div class="mb-3">
                 <label for="residencia" class="form-label">Residencia</label>
                 <input type="text" class="form-control" id="residencia" name="residencia" value="<?php echo $row['residencia']; ?>">
               </div>
               <button type="submit" class="btn btn-primary">Editar</button>
-              <a href="listaMedicos.php" class="btn btn-danger">Volver atras</a>
+              <a href="listaPacientes.php" class="btn btn-danger">Volver atras</a>
         </form>
         <?php
       }else{

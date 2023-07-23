@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro persona</title>
+    <title>Registro paciente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body class="bg-info-subtle">
@@ -25,7 +25,7 @@
                     <?php echo $mensaje; ?>
                 </div>
             <?php endif; ?>
-            <h3>Registro medico</h3>
+            <h3>Registro paciente</h3>
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="name" name="name">
@@ -79,7 +79,7 @@
                 <input type="text" class="form-control" id="residencia" name="residencia">
               </div>
               <button type="submit" class="btn btn-primary">Register</button>
-              <a href="listaMedicos.php" class="btn btn-success">Atras</a>
+              <a href="listaPacientes.php" class="btn btn-success">Atras</a>
         </form>
     </div>
 
