@@ -19,8 +19,6 @@
 <div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
         <form action="recibeDatosEspecialidad.php" method="post" style="width: 20rem;" class="bg-white p-3 rounded-2" id="registerForm">
         <?php
-            // En el formulario de inicio de sesión (index.php)
-            session_start();
 
             // Verificar si hay un mensaje almacenado en la variable de sesión
             if (isset($_SESSION['mensaje'])) {

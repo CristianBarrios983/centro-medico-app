@@ -27,12 +27,28 @@
             <a href="registroMedico.php" class="btn btn-primary">Registrar medico</a>
         </div>
 
+        <!-- Buscador -->
+        <div class="d-flex justify-content-end mb-3">
+            <form action="buscarMedicos.php" method="get">
+                <label for="" class="form-label">Buscar por nombre o por apellido</label>
+                <input type="text" class="form-control" id="busqueda" name="busqueda">
+                <button type="submit" class="btn btn-success mt-2">Buscar</button>
+            </form>
+        </div>
+
         <?php
             //Conexion a la base de datos
             require('../../assets/server/conexion.php');
 
             //Consulta para obtener los datos de las personas
-            $query = "SELECT m.matricula_medico, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.* FROM medicos m JOIN personas p ON m.id_persona = p.id_persona JOIN documentaciones d ON p.id_documento = d.id_documento JOIN datos_contactos dc ON dc.id_persona = p.id_persona JOIN direcciones di ON dc.id_direccion = di.id_direccion;";
+            $query = "SELECT m.id_medico, m.matricula_medico, p.*, d.tipo_documento, d.numero_documento, d.cuil, d.nro_seg_social, di.residencia, dc.*, es.id_especialidad, es.nombre_especialidad
+            FROM medicos m 
+            JOIN personas p ON m.id_persona = p.id_persona 
+            JOIN documentaciones d ON p.id_documento = d.id_documento 
+            JOIN datos_contactos dc ON dc.id_persona = p.id_persona 
+            JOIN direcciones di ON dc.id_direccion = di.id_direccion 
+            JOIN espxmedicos em ON m.id_medico = em.id_medico
+            JOIN especialidades es ON em.id_especialidad = es.id_especialidad";
             $result = mysqli_query($conn, $query);
 
             if(mysqli_num_rows($result) > 0){
@@ -64,6 +80,7 @@
                             <th>Apellido</th>
                             <th>Sexo</th>
                             <th>Matricula</th>
+                            <th>Especialidad</th>
                             <th colspan="2">Opciones</th>
                         </tr>
                     </thead>
@@ -79,6 +96,7 @@
                             <td><?php echo $row['apellido'];  ?></td>
                             <td><?php echo $row['sexo'];  ?></td>
                             <td><?php echo $row['matricula_medico'];  ?></td>
+                            <td><?php echo $row['nombre_especialidad'];  ?></td>
                             <td><a href="editarMedicoForm.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-success">Editar</a></td>
                             <td><a href="eliminarMedico.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-danger">Eliminar</a></td>
                         </tr>

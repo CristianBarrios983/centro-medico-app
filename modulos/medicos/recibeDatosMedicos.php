@@ -15,6 +15,7 @@
     $matricula = $_POST['matricula'];
     $residencia = $_POST['residencia'];
     $rol = $_POST['rol'];
+    $especialidad = $_POST['especialidad'];
 
     $queryCheckEmail = "SELECT * FROM usuarios WHERE email = '$email'";
     $resultCheckEmail = mysqli_query($conn, $queryCheckEmail);
@@ -41,6 +42,7 @@
                 $sql = "INSERT INTO medicos(id_persona,matricula_medico) VALUES ($id_persona,'$matricula')";
 
                 if(mysqli_query($conn, $sql)){
+                    $id_medico = $conn->insert_id;
 
                     $query = "INSERT INTO direcciones(residencia) VALUES ('$residencia')";
 
@@ -52,17 +54,22 @@
     
                         if(mysqli_query($conn, $query)){
                 
-                            $sql="INSERT INTO usuarios(id_rol,email,pass,id_persona) VALUES ($rol,'$email','$hash',$id_persona)";
+                            $sql = "INSERT INTO espxmedicos(id_especialidad,id_medico) VALUES ($especialidad,$id_medico)";
+
+                            if(mysqli_query($conn,$sql)){
+
+                                $query="INSERT INTO usuarios(id_rol,email,pass,id_persona) VALUES ($rol,'$email','$hash',$id_persona)";
             
-                            if (mysqli_query($conn,$sql)) {
-                                $_SESSION['mensaje'] = "Registrado exitosamente";
-                                header("Location: listaMedicos.php");
-                                exit();
-                            }else{
-                                $_SESSION['mensaje'] = "No se pudo registrar";
-                                header("Location: registroMedico.php");
-                                exit();
-                                //echo 'Se produjo un error'. mysqli_error();
+                                if (mysqli_query($conn,$query)) {
+                                    $_SESSION['mensaje'] = "Registrado exitosamente";
+                                    header("Location: listaMedicos.php");
+                                    exit();
+                                }else{
+                                    $_SESSION['mensaje'] = "No se pudo registrar";
+                                    header("Location: registroMedico.php");
+                                    exit();
+                                    //echo 'Se produjo un error'. mysqli_error();
+                                }
                             }
                         }
                     }

@@ -19,8 +19,6 @@
 <div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
         <form action="recibeDatosMedicos.php" method="post" style="width: 20rem;" class="bg-white p-3 rounded-2" id="registerForm">
         <?php
-            // En el formulario de inicio de sesión (index.php)
-            session_start();
 
             // Verificar si hay un mensaje almacenado en la variable de sesión
             if (isset($_SESSION['mensaje'])) {
@@ -88,6 +86,23 @@
               <div class="mb-3">
                 <label for="matricula" class="form-label">Matricula</label>
                 <input type="text" class="form-control" id="matricula" name="matricula">
+              </div>
+              <div class="mb-3">
+                <label for="especialidad" class="form-label">Especialidad</label>
+                <?php 
+                    require('../../assets/server/conexion.php');
+
+                    $query = "SELECT id_especialidad, nombre_especialidad FROM especialidades";
+                    $result = mysqli_query($conn,$query);
+                ?>
+                <select class="form-select" aria-label="Default select example" id="especialidad" name="especialidad">
+                    <option selected>Seleccione un puesto</option>
+                    <?php
+                         while($row = mysqli_fetch_assoc($result)):
+                    ?>
+                    <option value="<?php echo $row['id_especialidad']; ?>"><?php echo $row['nombre_especialidad']; ?></option>
+                    <?php endwhile; ?>
+                </select>
               </div>
               <div class="mb-3">
                 <label for="residencia" class="form-label">Residencia</label>

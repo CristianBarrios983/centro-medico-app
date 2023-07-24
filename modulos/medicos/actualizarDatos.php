@@ -9,6 +9,7 @@
         $id_documento = $_POST['id_doc'];
         $id_contacto = $_POST['id_contacto'];
         $id_direccion = $_POST['id_direccion'];
+        $id_medico = $_POST['id_medico'];
         $name = $_POST['name'];
         $surname = $_POST['surname'];
         $sex = $_POST['sex'];
@@ -19,6 +20,7 @@
         $telefono = $_POST['num_tel'];
         $matricula = $_POST['matricula'];
         $residencia = $_POST['residencia'];
+        $especialidad = $_POST['especialidad'];
 
         $query = "UPDATE personas SET nombre = '$name', apellido = '$surname', sexo = '$sex' WHERE id_persona = $id_registro";
         $result = mysqli_query($conn, $query);
@@ -35,7 +37,10 @@
         $query5 = "UPDATE direcciones SET residencia = '$residencia' WHERE id_direccion = $id_direccion";
         $result5 = mysqli_query($conn, $query5);
 
-        if(mysqli_query($conn, $query5)){
+        $query6 = "UPDATE espxmedicos SET id_especialidad = $especialidad WHERE id_medico = $id_medico";
+        $result6 = mysqli_query($conn, $query6);
+
+        if(mysqli_query($conn, $query6)){
             $_SESSION['mensaje'] = "Datos actualizados correctamente";
             header("Location: listaMedicos.php");
             exit();

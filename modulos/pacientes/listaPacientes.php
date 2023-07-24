@@ -27,6 +27,16 @@
             <a href="registroPaciente.php" class="btn btn-primary">Registrar paciente</a>
         </div>
 
+        <!-- Buscador -->
+        <div class="d-flex justify-content-end mb-3">
+            <form action="buscarPacientes.php" method="get">
+                <label for="" class="form-label">Buscar por nombre o por apellido</label>
+                <input type="text" class="form-control" id="busqueda" name="busqueda">
+                <button type="submit" class="btn btn-success mt-2">Buscar</button>
+            </form>
+        </div>
+
+
         <?php
             //Conexion a la base de datos
             require('../../assets/server/conexion.php');
