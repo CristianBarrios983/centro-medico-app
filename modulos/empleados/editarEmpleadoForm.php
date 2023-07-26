@@ -5,7 +5,7 @@
     if(isset($_SESSION['rol'])){
       $rolUsuario = $_SESSION['rol'];
 
-      if($rolUsuario == 1 || $rolUsuario == 3){
+      if($rolUsuario == 1){
 ?>
 <!doctype html>
 <html lang="en">
@@ -50,7 +50,7 @@
                 <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" value="<?php echo $row['nombre']; ?>">
               </div>
               <div class="mb-3">
-                <label for="surname" class="form-label">Nombre:</label>
+                <label for="surname" class="form-label">Apellido:</label>
                 <input type="text" class="form-control" id="surname" name="surname" aria-describedby="emailHelp" value="<?php echo $row['apellido']; ?>">
               </div>
               <div class="mb-3">

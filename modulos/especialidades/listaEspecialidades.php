@@ -30,7 +30,7 @@
         <!-- Buscador -->
         <div class="d-flex justify-content-end mb-3">
             <form action="buscarEspecialidades.php" method="get">
-                <label for="" class="form-label">Buscar por nombre o por apellido</label>
+                <label for="" class="form-label">Buscar por especialidad</label>
                 <input type="text" class="form-control" id="busqueda" name="busqueda">
                 <button type="submit" class="btn btn-success mt-2">Buscar</button>
             </form>

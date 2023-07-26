@@ -5,7 +5,7 @@
     if(isset($_SESSION['rol'])){
       $rolUsuario = $_SESSION['rol'];
 
-      if($rolUsuario == 1 || $rolUsuario == 3){
+      if($rolUsuario == 1){
 ?>
 <!DOCTYPE html>
 <html lang="en">

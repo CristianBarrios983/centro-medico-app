@@ -22,10 +22,13 @@
     <?php include('../../menu.php'); ?>
     <div class="container mt-4">
         <h1>Lista medicos</h1>
+
          <!-- Botón de registro -->
+         <?php if($rolUsuario == 1): ?>
          <div class="d-flex justify-content-start mb-3">
             <a href="registroMedico.php" class="btn btn-primary">Registrar medico</a>
         </div>
+        <?php endif; ?>
 
         <!-- Buscador -->
         <div class="d-flex justify-content-end mb-3">
@@ -81,7 +84,7 @@
                             <th>Sexo</th>
                             <th>Matricula</th>
                             <th>Especialidad</th>
-                            <th colspan="2">Opciones</th>
+                            <th colspan="3">Opciones</th>
                         </tr>
                     </thead>
                     
@@ -97,8 +100,11 @@
                             <td><?php echo $row['sexo'];  ?></td>
                             <td><?php echo $row['matricula_medico'];  ?></td>
                             <td><?php echo $row['nombre_especialidad'];  ?></td>
+                            <?php if($rolUsuario == 1): ?>
+                            <td><a href="verPerfilMedico.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-info">Ver datos</a></td>
                             <td><a href="editarMedicoForm.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-success">Editar</a></td>
                             <td><a href="eliminarMedico.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-danger">Eliminar</a></td>
+                            <?php endif; ?>
                         </tr>
                     </tbody>
                     <?php endwhile; ?>

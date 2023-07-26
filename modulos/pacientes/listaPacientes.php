@@ -22,10 +22,13 @@
     <?php include('../../menu.php'); ?>
     <div class="container mt-4">
         <h1>Lista pacientes</h1>
+
          <!-- Botón de registro -->
+         <?php if($rolUsuario == 1): ?>
          <div class="d-flex justify-content-start mb-3">
             <a href="registroPaciente.php" class="btn btn-primary">Registrar paciente</a>
         </div>
+        <?php endif; ?>
 
         <!-- Buscador -->
         <div class="d-flex justify-content-end mb-3">
@@ -91,8 +94,11 @@
                             <td><?php echo $row['nombre'];  ?></td>
                             <td><?php echo $row['apellido'];  ?></td>
                             <td><?php echo $row['sexo'];  ?></td>
+                            <?php if($rolUsuario == 1): ?>
+                            <td><a href="verPerfilPaciente.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-info">Ver datos</a></td>
                             <td><a href="editarPacienteForm.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-success">Editar</a></td>
                             <td><a href="eliminarPaciente.php?id=<?php echo $row['id_persona']; ?>" class="btn btn-danger">Eliminar</a></td>
+                            <?php endif; ?>
                         </tr>
                     </tbody>
                     <?php endwhile; ?>
