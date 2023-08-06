@@ -29,6 +29,31 @@
           <a class="nav-link" href="/final-db/modulos/especialidades/listaEspecialidades.php">Especialidades</a>
         </li>
         <?php endif; ?>
+        <?php if($rolUsuario == 1): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="/final-db/modulos/paises/listaPaises.php">Paises</a>
+        </li>
+        <?php endif; ?>
+        <?php if($rolUsuario == 1): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="/final-db/modulos/provincias/listaProvincias.php">Provincias</a>
+        </li>
+        <?php endif; ?>
+        <?php if($rolUsuario == 1): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="/final-db/modulos/localidades/listaLocalidades.php">Localidades</a>
+        </li>
+        <?php endif; ?>
+        <?php if($rolUsuario == 1): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="/final-db/modulos/calles/listaCalles.php">Calles</a>
+        </li>
+        <?php endif; ?>
+        <?php if($rolUsuario == 1): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="/final-db/modulos/barrios/listaBarrios.php">Barrios</a>
+        </li>
+        <?php endif; ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-fill"></i>

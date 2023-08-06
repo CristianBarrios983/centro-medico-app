@@ -1,7 +1,7 @@
 <?php
     include('assets/server/conexion.php');
 
-    $sql = "SELECT * FROM usuarios WHERE numero_usuario = 1";
+    $sql = "SELECT * FROM usuarios WHERE id_rol = 1";
     $result = mysqli_query($conn, $sql);
 
 ?>
